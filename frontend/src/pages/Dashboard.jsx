@@ -11,7 +11,7 @@ function Dashboard() {
 
     try {
 
-      const token = localStorage.getItem("token");
+      const token = console.log(localStorage.getItem("token"));
 
       const res = await axios.get(
         "https://task-manager-backend-bhre.onrender.com/api/auth/login/api/tasks",

@@ -17,7 +17,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/tasks", taskRoutes);
 
-mongoose.connect(process.env.mongodb+srv://admin:admin123@cluster1.ph1ij.mongodb.net/taskmanager?retryWrites=true&w=majority&appName=Cluster1)
+mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log("DB Connected"))
   .catch(err => console.log(err));
 

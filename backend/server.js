@@ -1,0 +1,28 @@
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+
+const authRoutes = require("./routes/auth");
+const projectRoutes = require("./routes/projectRoutes");
+const taskRoutes = require("./routes/taskRoutes");
+
+const app = express();
+
+app.use(express.json());
+app.use(cors());
+
+app.use("/api/auth", authRoutes);
+app.use("/api/projects", projectRoutes);
+app.use("/api/tasks", taskRoutes);
+
+mongoose.connect("mongodb://admin:admin123@cluster1-shard-00-00.ph1ij.mongodb.net:27017,cluster1-shard-00-01.ph1ij.mongodb.net:27017,cluster1-shard-00-02.ph1ij.mongodb.net:27017/?ssl=true&replicaSet=atlas-gapar2-shard-0&authSource=admin&appName=Cluster1")
+  .then(() => console.log("DB Connected"))
+  .catch(err => console.log(err));
+
+app.get("/", (req, res) => {
+  res.send("API Running");
+});
+
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
+});

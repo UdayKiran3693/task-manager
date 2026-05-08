@@ -17,7 +17,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/tasks", taskRoutes);
 
-mongoose.connect("process.env.mongodb://admin:admin123@cluster1-shard-00-00.ph1ij.mongodb.net:27017,cluster1-shard-00-01.ph1ij.mongodb.net:27017,cluster1-shard-00-02.ph1ij.mongodb.net:27017/?ssl=true&replicaSet=atlas-gapar2-shard-0&authSource=admin&appName=Cluster1")
+mongoose.connect(process.env.mongodb+srv://admin:admin123@cluster1.ph1ij.mongodb.net/taskmanager?retryWrites=true&w=majority&appName=Cluster1)
   .then(() => console.log("DB Connected"))
   .catch(err => console.log(err));
 

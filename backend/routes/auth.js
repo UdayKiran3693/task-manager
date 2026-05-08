@@ -20,20 +20,34 @@ router.post("/signup", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
-  if (!user) return res.send("User not found");
 
-  const isMatch = await bcrypt.compare(password, user.password);
-  if (!isMatch) return res.send("Wrong password");
+  if (!user) {
+    return res.send("User not found");
+  }
+
+  const isMatch = await bcrypt.compare(
+    password,
+    user.password
+  );
+
+  if (!isMatch) {
+    return res.send("Wrong password");
+  }
 
   const token = jwt.sign(
-    { id: user._id, role: user.role },
-    "secret"
+    {
+      id: user._id,
+      role: user.role
+    },
+    process.env.JWT_SECRET
   );
 
   res.send({ token });
+
 });
 
 module.exports = router;

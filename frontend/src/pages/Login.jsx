@@ -21,6 +21,8 @@ function Login() {
   }
 );
 
+console.log(res.data);
+
 localStorage.setItem("token", res.data.token);
 
 navigate("/dashboard");

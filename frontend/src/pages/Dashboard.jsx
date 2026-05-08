@@ -15,14 +15,11 @@ function Dashboard() {
 
       const token = localStorage.getItem("token");
 
-      const res = await axios.get(
-        "https://task-manager-backend-bhre.onrender.com/api/auth/login/api/tasks",
-        {
-          headers: {
-            Authorization: token
-          }
-        }
-      );
+      await axios.get(`${API}/api/tasks`, {
+  headers: {
+    Authorization: localStorage.getItem("token")
+  }
+});
 
       setTasks(res.data);
 
@@ -41,18 +38,14 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "https://task-manager-backend-bhre.onrender.com/api/tasks",
-
-        {
-          title: title
-        },
-
-        {
-          headers: {
-            Authorization: token
-          }
-        }
-      );
+  `${API}/api/tasks`,
+  { title },
+  {
+    headers: {
+      Authorization: localStorage.getItem("token")
+    }
+  }
+);
 
       alert("Task Created");
 
@@ -73,18 +66,14 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       await axios.put(
-        `https://task-manager-backend-bhre.onrender.com/api/tasks/${id}`,
-
-        {
-          status: "done"
-        },
-
-        {
-          headers: {
-            Authorization: token
-          }
-        }
-      );
+  `${API}/api/tasks/${id}`,
+  { status: "done" },
+  {
+    headers: {
+      Authorization: localStorage.getItem("token")
+    }
+  }
+);
 
       fetchTasks();
 

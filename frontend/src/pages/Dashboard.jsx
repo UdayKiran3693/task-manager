@@ -39,7 +39,7 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       await axios.post(
-        "http://localhost:5000/api/tasks",
+        "https://task-manager-backend-bhre.onrender.com/api/tasks",
 
         {
           title: title
@@ -71,7 +71,7 @@ function Dashboard() {
       const token = localStorage.getItem("token");
 
       await axios.put(
-        `http://localhost:5000/api/tasks/${id}`,
+        `https://task-manager-backend-bhre.onrender.com/api/tasks/${id}`,
 
         {
           status: "done"

@@ -14,18 +14,16 @@ function Login() {
     try {
 
       const res = await axios.post(
-        "https://task-manager-backend-bhre.onrender.com/api/auth/login",
-        {
-          email,
-          password
-        }
-      );
+  "https://task-manager-backend-bhre.onrender.com/api/auth/login",
+  {
+    email,
+    password
+  }
+);
 
-      localStorage.setItem("token", res.data.token);
+localStorage.setItem("token", res.data.token);
 
-      alert("Login Successful");
-
-      navigate("/dashboard");
+navigate("/dashboard");
 
     } catch (error) {
 
